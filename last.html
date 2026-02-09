@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waiting for You ❤️</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    h1 {
+        color: #ff4b5c;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        max-width: 800px;
+    }
+
+    .photo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        width: 100%;
+        max-width: 1000px;
+        margin-bottom: 30px;
+    }
+
+    .photo-grid img {
+        width: calc(50% - 15px);
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+        object-fit: cover;
+        height: 200px;
+    }
+
+    .photo-grid img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .message-box {
+        background: rgba(255,75,92,0.85);
+        padding: 20px 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        text-align: center;
+        max-width: 700px;
+        margin-bottom: 40px;
+    }
+
+    .message-box p {
+        color: #fff;
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: rgba(255,75,92,0.6);
+        transform: rotate(45deg);
+        animation: float 6s linear infinite;
+        z-index: 1;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: rgba(255,75,92,0.6);
+        border-radius: 50%;
+    }
+
+    .heart::before { top: -12px; left: 0; }
+    .heart::after { left: -12px; top: 0; }
+
+    @keyframes float {
+        0% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+        30% { opacity: 1; }
+        100% { transform: translateY(-120px) rotate(45deg); opacity: 0; }
+    }
+
+    /* Responsive for tablets */
+    @media(max-width: 900px){
+        .photo-grid img { width: calc(50% - 10px); height: 180px; }
+        h1 { font-size: 2rem; }
+        p { font-size: 1.1rem; }
+    }
+
+    /* Responsive for phones */
+    @media(max-width: 500px){
+        .photo-grid img { width: 100%; height: 150px; }
+        h1 { font-size: 1.6rem; }
+        p { font-size: 1rem; }
+        .message-box { padding: 15px 20px; }
+    }
+</style>
+</head>
+<body>
+
+<h1>💖 Waiting for You 💖</h1>
+
+<div class="photo-grid" id="photoGrid">
+    <!-- Random photos will be added here -->
+</div>
+
+<div class="message-box">
+    <p>
+        I hope you can give me one last chance, my love. ❤️ <br>
+        Every moment without you feels incomplete. <br>
+        I’m here waiting for your text, your smile, and your presence. <br>
+        I love you, Kali, and I’ll never stop hoping for us.
+    </p>
+</div>
+
+<script>
+    // Add floating hearts
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 6 + 's';
+        heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+        document.body.appendChild(heart);
+    }
+
+    // Array of photo filenames (replace with your own)
+    const photos = [
+        'uni.jpeg',
+        'tinjure.jpeg',
+        'chin.jpeg',
+        'bkt.jpeg',
+        'bhede.jpeg',
+        'helau.jpeg',
+        'teddy.jpeg',
+        'purposeday.jpeg'
+    ];
+
+    const photoGrid = document.getElementById('photoGrid');
+
+    // Pick 7–8 random photos
+    function getRandomPhotos(arr, count) {
+        let shuffled = arr.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    const randomPhotos = getRandomPhotos(photos, 8);
+    randomPhotos.forEach(photo => {
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = 'Our Memory';
+        photoGrid.appendChild(img);
+    });
+</script>
+
+</body>
+</html>
