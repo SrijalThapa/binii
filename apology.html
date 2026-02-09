@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Apology ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+
+            background: url('apology.jpeg') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Soft overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(255,154,158,0.6),
+                rgba(250,208,196,0.6)
+            );
+            z-index: 0;
+        }
+
+        /* Falling text container */
+        .falling-text {
+            position: absolute;
+            top: -50px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 18px;
+            white-space: nowrap;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff6b81;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #ff6b81;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255,107,129,0.4);
+        }
+
+        .btn:hover {
+            background: #ff4757;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255,107,129,0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Apology Card -->
+    <div class="container">
+        <h1>I'm Sorry I hurt you 😔</h1>
+        <p>
+            I know I made mistakes, and that's the reason where we are today. I take full responsibility
+            for them. But I am not going to give up on us. I am going to do everything I can to earn 
+            back your trust and your heart, because you mean everything to me.
+            Please forgive me.
+        </p>
+        <a href="notes.html" class="btn">Continue</a>
+    </div>
+
+    <!-- Falling text script -->
+    <script>
+        const messages = [
+            "I am sorry mero kalii ❤️",
+            "I'm sorry 😔",
+            "Forgive me ❤️",
+            "I love you mero kalii 💕",
+            "Please forgive me 🥺"
+        ];
+
+        function createFallingText() {
+            const text = document.createElement("div");
+            text.className = "falling-text";
+            text.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+            text.style.left = Math.random() * 100 + "vw";
+            text.style.fontSize = (18 + Math.random() * 16) + "px";
+            text.style.animationDuration = (9 + Math.random() * 9) + "s";
+
+            document.body.appendChild(text);
+
+            setTimeout(() => {
+                text.remove();
+            }, 12000);
+        }
+
+        setInterval(createFallingText, 600);
+    </script>
+
+</body>
+</html>
