@@ -3,228 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Memories & Notes 💖</title>
-
+<title>My Heartfelt Notes ❤️</title>
 <style>
-    * { box-sizing: border-box; }
-
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         margin: 0;
-        padding: 15px;
+        padding: 0;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         min-height: 100vh;
-        position: relative;
         overflow-x: hidden;
-    }
-
-    .container {
-        background: rgba(255, 255, 255, 0.97);
-        margin-top: 20px;
-        padding: 20px;
-        border-radius: 20px;
-        text-align: center;
-        width: 100%;
-        max-width: 900px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         position: relative;
-        z-index: 10;
     }
 
-    h1 { color: #ff4b5c; margin-bottom: 15px; font-size: 1.9em; }
-
-    .memories {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 15px;
-        margin-bottom: 25px;
+    /* Falling roses */
+    .rose {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        background: url('data:image/png;base64,iVBOR...') no-repeat center/contain;
+        top: -100px;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        z-index: 1;
     }
 
-    .memory {
-        background: #fff0f5;
-        padding: 10px;
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Floating photos on sides */
+    .photo {
+        position: absolute;
+        width: 220px;
+        height: 220px;
         border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .memory img {
-        width: 100%;
-        height: 160px;
         object-fit: cover;
-        border-radius: 12px;
-        margin-bottom: 8px;
+        animation: floatScale 6s ease-in-out infinite alternate;
+        opacity: 0.95;
+        z-index: 2;
     }
 
-    .memory p { font-size: 0.95em; }
+    @keyframes floatScale {
+        0%   { transform: translateY(0px) rotate(-5deg) scale(1); }
+        50%  { transform: translateY(15px) rotate(2deg) scale(1.05); }
+        100% { transform: translateY(30px) rotate(5deg) scale(1); }
+    }
 
-    input[type="date"] {
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
+    /* Central container */
+    .container {
+        background: rgba(255,255,255,0.95);
+        padding: 40px 30px;
+        border-radius: 20px;
+        max-width: 750px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 10;
+        position: relative;
+    }
+
+    h1 {
+        color: #ff4b5c;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+
+    p {
         font-size: 16px;
-        width: 100%;
-        max-width: 260px;
-        margin: 10px 0;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: left;
+        line-height: 1.5em;
     }
 
     button {
-        padding: 12px 24px;
+        padding: 12px 25px;
         border: none;
-        border-radius: 25px;
+        border-radius: 8px;
         background: #ff4b5c;
         color: white;
         font-size: 16px;
         cursor: pointer;
-        margin: 6px;
-        min-width: 120px;
-        position: relative;
-        z-index: 20;
-    }
-
-    button:hover { background: #ff6f91; }
-
-    #response { margin-top: 10px; color: #ff4b5c; font-weight: 500; }
-
-    .notes {
-        margin-top: 25px;
-        padding: 20px;
-        background: #fff0f5;
-        border-radius: 15px;
-        display: none;
-        animation: fadeIn 1s ease;
-        position: relative;
-        z-index: 10;
-    }
-
-    .notes h1 { font-size: 1.6em; }
-
-    .button-group {
         margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
+    button:hover {
+        background: #ff6f91;
     }
 
-    /* Falling hearts animation */
-    .heart {
-        position: absolute;
-        font-size: 24px;
-        animation-name: floatHeart;
-        animation-timing-function: linear;
-        animation-iteration-count: 1;
-        z-index: 5;
+    /* Responsive styles for mobile */
+    @media(max-width: 900px){
+        .photo { width: 130px; height: 130px; }
+        .container { padding: 25px 15px; }
+        h1 { font-size: 1.5em; }
+        p { font-size: 14px; }
     }
 
-    @keyframes floatHeart {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(-400px) rotate(360deg); opacity: 0; }
-    }
-
-    @media (max-width: 480px) {
-        h1 { font-size: 1.6em; }
-        .memory img { height: 140px; }
-        button { width: 100%; max-width: 220px; }
+    @media(max-width: 500px){
+        .photo { width: 90px; height: 90px; }
+        p { font-size: 13px; }
+        button { font-size: 14px; padding: 10px 20px; }
     }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Our Beautiful Memories 💕</h1>
-
-    <div class="memories">
-        <div class="memory">
-            <img src="remember this days.jpeg" alt="Memory 1">
-            <p>Remember this day? ✨</p>
-        </div>
-        <div class="memory">
-            <img src="laugh and happy.jpeg" alt="Memory 2">
-            <p>Our laughter 😄</p>
-        </div>
-        <div class="memory">
-            <img src="alwaysmine.jpg" alt="Memory 3">
-            <p>Forever ❤️</p>
-        </div>
-    </div>
-
-    <p><b>Enter the date we started our relationship:</b></p>
-    <input type="date" id="relDate">
-    <br>
-    <button onclick="validateDate()">Submit</button>
-    <p id="response"></p>
-
-    <div class="notes" id="personalNotes">
-        <h1>Will you be my Valentine? ❤️</h1>
-        <div id="notesContent"></div>
-
-        <div class="button-group" id="valentineButtons">
-            <button id="yesBtn" onclick="yesClick()">Yes ❤️</button>
-            <button id="noBtn" onclick="noClick()">No 😔</button>
-        </div>
-    </div>
+    <h1>My Heartfelt Notes ❤️</h1>
+    <p>I don't even know where to start because words feel so small when I try to describe how I feel about you. Sometimes I just stare at your pictures and wonder how someone like me got so lucky to have someone like you...</p>
+    <p>Do you remember the first time we really talked? I didn't know that day would change my life forever...</p>
+    <p>There are nights when I lie awake thinking about you, about everything we've shared...</p>
+    <p>Sometimes I'm scared, you know? Scared of losing you...</p>
+    <p>You're not just my girlfriend; you're a part of who I am...</p>
+    <p>And maybe one day when you read this again, I want you to remember...</p>
+    <p>So if ever you doubt it even for a second, just know this, you've changed me in ways I can never explain...</p>
+    <button onclick="alert('❤️ I love you mero kali!!!! sending hugs from miles away')">Yes ❤️</button>
 </div>
 
 <script>
-function validateDate() {
-    const inputDate = document.getElementById('relDate').value;
-    const correctDate = '2020-09-24';
-    const response = document.getElementById('response');
-    const notes = document.getElementById('personalNotes');
-
-    if (inputDate === correctDate) {
-        notes.style.display = 'block';
-        response.textContent = '';
-    } else {
-        response.textContent = 'That’s not our date 😅 Try again!';
-        notes.style.display = 'none';
+    // Falling roses
+    let roseCount = window.innerWidth < 500 ? 15 : 30;
+    for(let i=0;i<roseCount;i++){
+        const rose = document.createElement('div');
+        rose.className = 'rose';
+        rose.style.left = Math.random()*100 + 'vw';
+        rose.style.animationDuration = (5 + Math.random()*5) + 's';
+        rose.style.animationDelay = Math.random()*5 + 's';
+        document.body.appendChild(rose);
     }
-}
 
-function yesClick() {
-    document.getElementById('notesContent').innerHTML = `
-        <h2>Yay! ❤️ Thank you for trusting me!</h2>
-        <p>Let's make beautiful memories together forever 😘</p>
-    `;
-    // Hide No button
-    document.getElementById('noBtn').style.display = 'none';
-    // Start falling love emojis
-    startFallingHearts();
-}
+    // Floating side photos
+    const photos = [
+        'uni.jpeg', 'tinjure.jpeg', 'pilot.jpeg',
+        'chin.jpeg', 'bkt.jpeg', 'bhede.jpeg'
+    ]; // replace with your own images
 
-function noClick() {
-    document.getElementById('yesBtn').style.display = 'none';
-    window.location.href = 'apology.html';
-}
-
-// Function to create falling hearts
-function startFallingHearts() {
-    const body = document.body;
-    const heartCount = 30; // Number of hearts
-
-    for(let i = 0; i < heartCount; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.textContent = '❤️';
-        heart.style.left = Math.random() * 90 + 'vw';
-        heart.style.top = Math.random() * 50 + 'vh';
-        heart.style.fontSize = (20 + Math.random() * 20) + 'px';
-        heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-        body.appendChild(heart);
-
-        // Remove heart after animation
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
-    }
-}
+    photos.forEach((src, i)=>{
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'photo';
+        if(i<3){
+            img.style.left = window.innerWidth < 900 ? '2vw' : '5vw';
+            img.style.top = (10 + i*25) + 'vh';
+        } else {
+            img.style.right = window.innerWidth < 900 ? '2vw' : '5vw';
+            img.style.top = (10 + (i-3)*25) + 'vh';
+        }
+        document.body.appendChild(img);
+    });
 </script>
 
 </body>
